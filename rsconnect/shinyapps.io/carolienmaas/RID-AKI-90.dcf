@@ -1,0 +1,12 @@
+name: RID-AKI-90
+title: RID-AKI-90
+username: carolienmaas
+account: carolienmaas
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 15580654
+bundleId: 10959489
+url: https://carolienmaas.shinyapps.io/RID-AKI-90/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

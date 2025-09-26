@@ -1,0 +1,12 @@
+name: RID-AKI-90
+title: RID-AKI-90
+username: chmapps
+account: chmapps
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 15580702
+bundleId: 10959643
+url: https://chmapps.shinyapps.io/RID-AKI-90/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
