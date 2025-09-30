@@ -4,26 +4,22 @@
 The probability of 90-day kidney recovery was estimated using a Cox proportional hazards model.
 The linear predictor, indicating risk of a patient, of the model is given by:
 $$ \begin{align*}
-\text{LP} &= -2.6897 \\
-& -0.0134 \cdot \text{Age in years}\\
-& + 0.4697 \cdot \text{I(Male)} \\
-& +0.3792 \cdot \text{I(History of hypertension)} \\
-& -0.5561 \cdot \text{I(Hypertension requiring 3 or more medications)} \\
-& +0.0725 \cdot \text{Systolic blood pressure (mmHg)} \\
-& -0.0003 \cdot \text{(Systolic blood pressure (mmHg))^2} \\
-& +0.0133 \cdot \text{Diastolic blood pressure (mmHg)} \\
-& -0.2444 \cdot \text{Interdialytic weight gain (kg)} \\
-& -0.3060 \cdot \text{Serum Potassium (mmol/L)} \\
-& -0.4153 \cdot \text{Pre-dialysis Serum Creatinine (mg/dL)} \\
-& +0.0194 \cdot \text{(Pre-dialysis Serum Creatinine (mg/dL))^2} \\
-& +0.0787 \cdot \text{Phosphorous (mg/dL)} \\
-& +0.2017 \cdot \text{Serum Albumin (g/dL)} \\
-& -0.0011 \cdot \text{Parathyroid hormone (pg/mL)} \\
-& +0.0012 \cdot \text{Platelet count (x10E3/uL)} \\
+\text{LP} &= 2.653 \\
+& - 0.016 \cdot \text{Age in years}\\
+& + 0.519 \cdot \text{I(Male)} \\
+& + 0.337 \cdot \text{I(History of hypertension)} \\
+& - 0.658 \cdot \text{I(Hypertension requiring 3 or more medications)} \\
+& + 0.279 \cdot \text{Serum Albumin (g/dL)} \\
+& - 0.398 \cdot \text{Pre-dialysis Serum Creatinine (mg/dL)} \\
+& + 0.021 \cdot \text{(Pre-dialysis Serum Creatinine (mg/dL))^2} \\
+& - 0.001 \cdot \text{Parathyroid hormone (pg/mL)} \\
+& + 0.002 \cdot \text{Platelet count (x10E3/uL)} \\
+& - 0.341 \cdot \text{Serum Potassium (mmol/L)} \\
+& - 0.123 \cdot \text{Interdialytic weight gain (kg)} \\
 \end{align*} $$
 where
 \begin{equation}
-  \text{I(condition)} = 
+  \text{I(condition)} =
   \begin{cases}
   1 & \text{if condition is true} \\
   0 & \text{otherwise}
@@ -34,7 +30,7 @@ and for example if platelet count is 10.000uL one should enter 10.
 <h3>Probability of kidney recovery</h3>
 The probability of kidney recovery was calculated by
 $$ \begin{align*}
-\text{hazard} &= 0.364 \cdot \exp(0.951 \cdot \text{LP}) \\
+\text{hazard} &= 0.377 \cdot \exp(0.939 \cdot \text{LP}) \\
 P(\text{Kidney recovery}) &= \exp(-\text{hazard}) \cdot 100
 \end{align*} $$
 where exp the natural exponential.
