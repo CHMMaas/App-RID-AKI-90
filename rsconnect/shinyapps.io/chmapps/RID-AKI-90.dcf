@@ -5,7 +5,7 @@ account: chmapps
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 15580702
-bundleId: 12162703
+bundleId: 12162749
 url: https://chmapps.shinyapps.io/RID-AKI-90/
 version: 1
 asMultiple: FALSE
