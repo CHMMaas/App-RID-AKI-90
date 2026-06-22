@@ -2,36 +2,38 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
 <h3>Calculate risk</h3>
 The probability of 90-day kidney recovery was estimated using a Cox proportional hazards model.
-The linear predictor, indicating risk of a patient, of the model is given by:
+The linear predictor from the model, indication risk of a patient to recover kidney function by 90-days, is calculated as follows:
 $$ \begin{align*}
-\text{LP} &= 2.653 \\
-& - 0.016 \cdot \text{Age in years}\\
-& + 0.519 \cdot \text{I(Male)} \\
-& + 0.337 \cdot \text{I(History of hypertension)} \\
-& - 0.658 \cdot \text{I(Hypertension requiring 3 or more medications)} \\
-& + 0.279 \cdot \text{Serum Albumin (g/dL)} \\
-& - 0.398 \cdot \text{Pre-dialysis Serum Creatinine (mg/dL)} \\
-& + 0.021 \cdot \text{(Pre-dialysis Serum Creatinine (mg/dL))^2} \\
-& - 0.001 \cdot \text{Parathyroid hormone (pg/mL)} \\
-& + 0.002 \cdot \text{Platelet count (x10E3/uL)} \\
-& - 0.341 \cdot \text{Serum Potassium (mmol/L)} \\
-& - 0.123 \cdot \text{Interdialytic weight gain (kg)} \\
+\text{LP} &= -2.535 \\
+& -0.0130 \cdot \text{Age in years}\\
+& + 0.5077 \cdot \text{I(Male)} \\
+& -0.5656 \cdot \text{I(History of congestive heart failure)} \\
+& -0.4701 \cdot \text{I(Hypertension requiring 3 or more medications)} \\
+& +0.3159 \cdot \text{Serum Albumin (g/dL)} \\
+& -0.4088 \cdot \text{Pre-dialysis Serum Creatinine (mg/dL)} \\
+& +0.0214 \cdot \text{(Pre-dialysis Serum Creatinine (mg/dL))^2} \\
+& -0.0011 \cdot \text{Parathyroid hormone (pg/mL)} \\
+& +0.0016 \cdot \text{Platelet count (x10E3/uL)} \\
+& -0.3300 \cdot \text{Serum Potassium (mmol/L)} \\
+& -0.1244 \cdot \text{Interdialytic weight change (kg)} \\
+
 \end{align*} $$
 where
 \begin{equation}
-  \text{I(condition)} =
+  \text{I(condition)} = 
   \begin{cases}
   1 & \text{if condition is true} \\
-  0 & \text{otherwise}
+  0 & \text{if condition is false}
   \end{cases}
 \end{equation}
-and for example if platelet count is 10.000uL one should enter 10.
+Note, interdialytic weight change should be ascertained at the time closest to but not following ascertainment of variables measured only once in the first week.
+Furthermore, if platelet count is for example 100.000uL,  one should enter 100.
 
 <h3>Probability of kidney recovery</h3>
-The probability of kidney recovery was calculated by
+The probability for 90-day kidney function recovery is calculated by:
 $$ \begin{align*}
-\text{hazard} &= 0.377 \cdot \exp(0.939 \cdot \text{LP}) \\
-P(\text{Kidney recovery}) &= \exp(-\text{hazard}) \cdot 100
+\text{hazard} &= 0.377 \cdot \exp(0.935 \cdot \text{LP}) \\
+P(\text{Kidney recovery within 90 days}) &= \exp(-\text{hazard}) \cdot 100
 \end{align*} $$
-where exp the natural exponential.
+where hazard is the hazard of 90-day kidney function recovery, exp is the natural exponential function, LP is the linear predictor calculated above, and P is probability.
 </p>
