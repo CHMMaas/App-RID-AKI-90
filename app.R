@@ -5,7 +5,7 @@ library(shinydashboard) # dashboard layout
 library(shinyBS)        # optional Bootstrap components
 
 # Load pre-trained Cox model
-load("model3.Rdata")     # bw.model must exist in this file
+load("model.Rdata")     # bw.model must exist in this file
 
 # Define numeric inputs with metadata for UI sliders/numeric inputs
 numeric_inputs <- list(
