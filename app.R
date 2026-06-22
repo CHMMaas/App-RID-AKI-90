@@ -68,13 +68,23 @@ ui <- dashboardPage(
       }
       #calculateButton:hover { background: linear-gradient(135deg, #2c6fa0, #1a5276); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(44,111,160,0.3); }
 
-      /* Result display */
-      .result-panel { margin-top: 15px; }
-      .result-panel .info-box { border-radius: 8px; box-shadow: 0 3px 12px rgba(0,0,0,0.1); min-height: 90px; }
-      .result-panel .info-box-icon { border-radius: 8px 0 0 8px; }
-      .result-panel .info-box-content { padding: 12px 15px; }
-      .result-panel .info-box-text { font-size: 14px; font-weight: 500; }
-      .result-panel .info-box-number { font-size: 36px; font-weight: 700; color: #2c3e50; }
+      /* Result card */
+      .result-card {
+        background: white; border-radius: 10px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        padding: 30px; text-align: center; margin-top: 15px;
+        border-top: 4px solid #27ae60;
+      }
+      .result-card .result-label {
+        font-size: 14px; font-weight: 600; color: #7f8c8d;
+        text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;
+      }
+      .result-card .result-value {
+        font-size: 56px; font-weight: 700; color: #2c3e50; line-height: 1.1;
+      }
+      .result-card .result-subtitle {
+        font-size: 15px; color: #95a5a6; margin-top: 8px;
+      }
 
       /* Numeric inputs */
       .form-control { border-radius: 4px; border: 1px solid #cbd5e0; transition: border-color 0.2s; }
@@ -126,32 +136,31 @@ ui <- dashboardPage(
               fluidRow(
                 box(width=12, status="primary", solidHeader=FALSE,
                     title=span(icon("weight-scale"), "Dialysis Characteristics"),
-                    column(4,
+                    column(6,
                            numericInput("preweight", numeric_inputs$preweight$label,
                                         min=numeric_inputs$preweight$min,
                                         max=numeric_inputs$preweight$max,
                                         value=numeric_inputs$preweight$value,
                                         step=numeric_inputs$preweight$step)
                     ),
-                    column(4,
+                    column(6,
                            numericInput("postweight", numeric_inputs$postweight$label,
                                         min=numeric_inputs$postweight$min,
                                         max=numeric_inputs$postweight$max,
                                         value=numeric_inputs$postweight$value,
                                         step=numeric_inputs$postweight$step)
-                    ),
-                    column(4,
-                           div(style="padding-top: 25px;",
-                               actionButton("calculateButton", "Calculate",
-                                            icon=icon("calculator"), class="btn-lg btn-block"))
                     )
                 )
               ),
               fluidRow(
-                shinyjs::hidden(
-                  div(id="results.panel", class="result-panel",
-                      column(12, infoBoxOutput("recovery_box", width=12))
-                  )
+                column(12, div(style="text-align: center; margin-bottom: 15px;",
+                    actionButton("calculateButton", "Calculate",
+                                 icon=icon("calculator"), class="btn-lg")
+                ))
+              ),
+              shinyjs::hidden(
+                div(id="results.panel",
+                    fluidRow(column(12, uiOutput("recovery_box")))
                 )
               )
       ),
@@ -206,13 +215,12 @@ server <- function(input, output, session) {
     1 - exp(-mean(h0.shrunk) * exp(shrinkage.factor * lp.patient))
   })
 
-  # Render the predicted probability in an infoBox
-  output$recovery_box <- renderInfoBox({
+  output$recovery_box <- renderUI({
     prob <- pred.prob() * 100
-    infoBox(width=12, color="blue", icon=icon("chart-line"),
-            title="Predicted probability of kidney recovery within 90 days",
-            value=paste0(sprintf("%.1f", prob), "%"),
-            subtitle="Dialysis-dependent AKI")
+    div(class="result-card",
+        div(class="result-label", "Predicted probability of recovery in dialysis-dependent AKI at 90 days"),
+        div(class="result-value", paste0(sprintf("%.0f", prob), "%"))
+    )
   })
 
   # Show results panel when calculate button is clicked
