@@ -2,7 +2,7 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
 <h3>Calculate risk</h3>
 The probability of 90-day kidney recovery was estimated using a Cox proportional hazards model.
-The linear predictor from the model, indication risk of a patient to recover kidney function by 90-days, is calculated as follows:
+The linear predictor from the model, indicating the risk of a patient to recover kidney function by 90-days, is calculated as follows:
 $$ \begin{align*}
 \text{LP} &= -2.535 \\
 & -0.0130 \cdot \text{Age in years}\\
@@ -30,7 +30,7 @@ Note, interdialytic weight change should be ascertained at the time closest to b
 Furthermore, if platelet count is for example 100.000uL,  one should enter 100.
 
 <h3>Probability of kidney recovery</h3>
-The probability for 90-day kidney function recovery is calculated by:
+The probability of 90-day kidney function recovery is calculated by:
 $$ \begin{align*}
 \text{hazard} &= 0.377 \cdot \exp(0.935 \cdot \text{LP}) \\
 P(\text{Kidney recovery within 90 days}) &= \exp(-\text{hazard}) \cdot 100
